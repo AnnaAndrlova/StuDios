@@ -18,8 +18,7 @@ import java.util.Set;
         private Long id;
         private String status;
 
-        @OneToMany(mappedBy = "priority")
-        private Set<Project> projects;
+
 
         @OneToMany(mappedBy = "priority")
         private Set<Task> tasks;

@@ -1,16 +1,15 @@
 package rest.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+import rest.models.Project;
 import rest.models.Task;
 import rest.models.User;
 import rest.repo.TaskRepo;
 
 import java.util.List;
 
+@RestController
 public class ApiTaskController {
 
     @Autowired
@@ -21,13 +20,13 @@ public class ApiTaskController {
         return taskRepo.findAll();
     }
 
-    @PostMapping(value = "/savetask")
+    @PostMapping(value = "/saveTask")
     public String saveTask(@RequestBody Task task){
         taskRepo.save(task);
         return "Saved Successfully";
     }
 
-    @PostMapping(value = "/updatetask/{id}")
+    @PostMapping(value = "/updateTask/{id}")
     public String updateTask(@PathVariable long id, @RequestBody Task task){
         Task updatedTask = taskRepo.findById(id).get();
         updatedTask.setCategory(task.getCategory());
@@ -39,8 +38,12 @@ public class ApiTaskController {
         taskRepo.save(updatedTask);
         return "Updated Successfully";
     }
+    @GetMapping(value = "/task/{id}")
+    public Task getTask(@PathVariable long id) {
+        return taskRepo.findById(id).get();
+    }
 
-    @PostMapping(value = "/deletetask/{id}")
+    @PostMapping(value = "/deleteTask/{id}")
     public String deleteTask(@PathVariable long id){
         taskRepo.deleteById(id);
         return "Deleted Successfully";

@@ -20,7 +20,7 @@ public class ApiProjectController {
         return projectRepo.findAll();
     }
     @GetMapping(value = "/project/{id}")
-    public Project getProjects(@PathVariable long id) {
+    public Project getProject(@PathVariable long id) {
         return projectRepo.findById(id).get();
     }
 
