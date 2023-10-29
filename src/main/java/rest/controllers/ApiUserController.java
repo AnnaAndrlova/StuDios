@@ -24,12 +24,12 @@ public class ApiUserController {
     }
 
     @PostMapping(value = "/saveUser")
-    public String saveUsers(@RequestBody User user){
+    public String saveUser(@RequestBody User user){
         userRepo.save(user);
         return "Saved Successfully";
     }
 
-    @PostMapping(value = "/updateUser/{id}")
+    @PutMapping(value = "/updateUser/{id}")
     public String updateUser(@PathVariable long id, @RequestBody User user){
         User updatedUser = userRepo.findById(id).get();
         updatedUser.setUserName(user.getUserName());
@@ -39,7 +39,7 @@ public class ApiUserController {
         return "Updated Successfully";
     }
 
-    @PostMapping(value = "/deleteUser/{id}")
+    @DeleteMapping(value = "/deleteUser/{id}")
     public String deleteUser(@PathVariable long id){
         userRepo.deleteById(id);
         return "Deleted Successfully";

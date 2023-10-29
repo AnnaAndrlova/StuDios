@@ -26,14 +26,14 @@ public class ApiTaskController {
         return "Saved Successfully";
     }
 
-    @PostMapping(value = "/updateTask/{id}")
+    @PutMapping(value = "/updateTask/{id}")
     public String updateTask(@PathVariable long id, @RequestBody Task task){
         Task updatedTask = taskRepo.findById(id).get();
         updatedTask.setCategory(task.getCategory());
         updatedTask.setDescription(task.getDescription());
         updatedTask.setDeadline(task.getDeadline());
-        updatedTask.setStatus(task.getStatus());
-        updatedTask.setPriority(task.getPriority());
+        //updatedTask.setStatus(task.getStatus());
+        //updatedTask.setPriority(task.getPriority());
 
         taskRepo.save(updatedTask);
         return "Updated Successfully";
@@ -43,7 +43,7 @@ public class ApiTaskController {
         return taskRepo.findById(id).get();
     }
 
-    @PostMapping(value = "/deleteTask/{id}")
+    @DeleteMapping(value = "/deleteTask/{id}")
     public String deleteTask(@PathVariable long id){
         taskRepo.deleteById(id);
         return "Deleted Successfully";

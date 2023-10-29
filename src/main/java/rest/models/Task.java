@@ -1,6 +1,6 @@
 package rest.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,11 +26,16 @@ public class Task {
     @Column
     private LocalDateTime deadline;
 
-    @ManyToOne @JsonManagedReference
+    @ManyToOne
     @JoinColumn(name = "status_id")
-    private Status status;
+    @JsonBackReference(value="statusTask")
+    private Status statusTask;
 
-    @ManyToOne @JsonManagedReference
+    @ManyToOne
     @JoinColumn(name = "priority_id")
+    @JsonBackReference
     private Priority priority;
+
+    @Column
+    private long user_id;
 }

@@ -34,7 +34,7 @@ public class ApiProjectController {
         updatedProject.setDeadline(project.getDeadline());
         updatedProject.setDescription(project.getDescription());
         updatedProject.setProjectName(project.getProjectName());
-        updatedProject.setStatus(project.getStatus());
+        //updatedProject.setStatus(project.getStatus());
         updatedProject.setSubject(project.getSubject());
     }
     @DeleteMapping (value = "/delete/{id}")
